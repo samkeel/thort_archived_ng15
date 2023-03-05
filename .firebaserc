@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "thort-1e951": {
+      "hosting": {
+        "thort": [
+          "thort-1e951"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "thort-1e951"
+  }
+}
