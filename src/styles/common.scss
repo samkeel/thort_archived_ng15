@@ -1,0 +1,8 @@
+@use "@angular/material" as material;
+@use "sass:map";
+@use "../app/app.component.scss-theming.scss" as root;
+
+@mixin create-theme($theme) {
+    @include material.all-legacy-component-themes($theme);
+    @include root.app-root-theme($theme);
+}
