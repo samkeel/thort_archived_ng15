@@ -1,3 +1,5 @@
+@use "@material/top-app-bar/mdc-top-app-bar";
+
 .sidenav {
   width: 200px;
 }
@@ -9,4 +11,8 @@
 .mat-drawer-side {
   border: none;
   box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.content {
+  min-height: calc(100vh - 64px);
 }

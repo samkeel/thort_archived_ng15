@@ -16,7 +16,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MainComponent } from './shared/main/main.component';
+import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './shared/header/header.component';
+import { BpObserverService } from './shared/services/bp-observer.service';
 
 @NgModule({
   declarations: [
@@ -32,14 +34,18 @@ import { HeaderComponent } from './shared/header/header.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    LayoutModule,
+    LayoutModule,    
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
+        
   ],
-  providers: [],
+  providers: [
+    BpObserverService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

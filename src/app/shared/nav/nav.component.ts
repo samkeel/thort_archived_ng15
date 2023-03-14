@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
 import { SideNavServiceService } from '../services/side-nav-service.service';
+import { BpObserverService } from '../services/bp-observer.service';
 
 @Component({
   selector: 'app-nav',
@@ -13,15 +14,10 @@ import { SideNavServiceService } from '../services/side-nav-service.service';
 export class NavComponent {
   @ViewChild('sidenav') public sidenav!: MatSidenav;
 
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(
-      map((result) => result.matches),
-      shareReplay()
-    );
+  isHandset$: Observable<boolean> = this.bpoService.Handset$;
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
+    private bpoService: BpObserverService,
     private sideNavService: SideNavServiceService
   ) {}
 
