@@ -1,0 +1,40 @@
+section {
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+mat-card {
+    grid-column-start: 2;
+    grid-column-end: span 5;
+}
+
+.card-actions {
+    display: grid;
+    grid-template-columns: repeat(5fr);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+    .login-btn {
+        grid-column-start: 2;
+    }
+    
+    .signup-btn {
+        grid-column-start: 4;
+    }
+       
+}
+
+.handset-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+
+    .login-btn {
+        grid-column-start: 1;
+        margin: 2px;
+    }
+    
+    .signup-btn {
+        grid-column-start: 2;
+        margin: 2px;
+    }
+}

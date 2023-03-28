@@ -1,1 +1,15 @@
-<p>main works</p>
+<section>
+  <mat-card >
+    <mat-card-header >
+      <mat-card-title >Welcome to thort</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Login or sign up</p>
+      <p>{{currentScreenSize}}</p>
+    </mat-card-content>
+    <mat-card-actions class="card-actions" [ngClass]="{'handset-grid' : handset}">
+      <button mat-raised-button color="primary" class="login-btn">Login</button>
+      <button mat-raised-button color="accent" class="signup-btn">Sign up</button>
+    </mat-card-actions>
+  </mat-card>  
+</section>
