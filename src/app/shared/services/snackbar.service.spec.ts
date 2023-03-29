@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ScreenBreakService } from './screen-break.service';
+import { SnackbarService } from './snackbar.service';
 
-describe('ScreenBreakService', () => {
-  let service: ScreenBreakService;
+describe('SnackbarService', () => {
+  let service: SnackbarService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ScreenBreakService);
+    service = TestBed.inject(SnackbarService);
   });
 
   it('should be created', () => {

@@ -19,13 +19,23 @@ import { MainComponent } from './shared/main/main.component';
 import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './shared/header/header.component';
 import { BpObserverService } from './shared/services/bp-observer.service';
+import { SignInComponent } from './shared/components/sign-in/sign-in.component';
+import { SignUpComponent } from './shared/components/sign-up/sign-up.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+import { TopOfPageComponent } from './shared/components/top-of-page/top-of-page.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     MainComponent,
-    HeaderComponent
+    HeaderComponent,
+    SignInComponent,
+    SignUpComponent,
+    PageNotFoundComponent,
+    TopOfPageComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +50,8 @@ import { BpObserverService } from './shared/services/bp-observer.service';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatCardModule
-        
+    MatCardModule,
+    MatSnackBarModule
   ],
   providers: [
     BpObserverService

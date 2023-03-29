@@ -15,6 +15,7 @@ export class NavComponent {
   @ViewChild('sidenav') public sidenav!: MatSidenav;
 
   isHandset$: Observable<boolean> = this.bpoService.Handset$;
+  isHandsetPortrait$: Observable<boolean> = this.bpoService.HandsetPortrait$;
 
   constructor(
     private bpoService: BpObserverService,

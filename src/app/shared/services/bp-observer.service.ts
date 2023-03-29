@@ -14,5 +14,12 @@ export class BpObserverService {
       shareReplay()
     );
 
+  HandsetPortrait$: Observable<boolean> = this._breakpointObserver
+    .observe(Breakpoints.HandsetPortrait)
+    .pipe(
+      map((results) => results.matches),
+      shareReplay()
+    );
+
   constructor(private _breakpointObserver: BreakpointObserver) {}
 }

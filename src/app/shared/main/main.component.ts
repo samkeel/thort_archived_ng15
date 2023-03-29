@@ -27,12 +27,12 @@ export class MainComponent {
         this.handset = false;
         const breakpoints = result.breakpoints;
         if (breakpoints[Breakpoints.Small]) {
-          this.currentScreenSize = 'small';
+          this.currentScreenSize = 'Small';
         } else if (breakpoints[Breakpoints.Large]) {
-          this.currentScreenSize = 'large';
+          this.currentScreenSize = 'Large';
         } else if (breakpoints[Breakpoints.HandsetPortrait]) {
           this.handset = true;
-          this.currentScreenSize = 'handset portait';
+          this.currentScreenSize = 'Handset Portrait';
         }
       });
   }

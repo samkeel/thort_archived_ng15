@@ -1,40 +1,49 @@
 section {
-    padding: 1em;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  &.handset-portait {
+    grid-template-columns: 1fr;
+  }
 }
 
 mat-card {
-    grid-column-start: 2;
-    grid-column-end: span 5;
+  grid-column-start: 2;
+  grid-column-end: span 5;
+
+  &.handset-portait {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-start: 1;
+    grid-column-end: span 1;
+  }
 }
 
 .card-actions {
-    display: grid;
-    grid-template-columns: repeat(5fr);
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: repeat(5fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 
-    .login-btn {
-        grid-column-start: 2;
-    }
-    
-    .signup-btn {
-        grid-column-start: 4;
-    }
-       
+  .login-btn {
+    grid-column-start: 2;
+  }
+
+  .signup-btn {
+    grid-column-start: 4;
+  }
 }
 
 .handset-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-    .login-btn {
-        grid-column-start: 1;
-        margin: 2px;
-    }
-    
-    .signup-btn {
-        grid-column-start: 2;
-        margin: 2px;
-    }
+  .login-btn {
+    grid-column-start: 1;
+    margin: 2px;
+  }
+
+  .signup-btn {
+    grid-column-start: 2;
+    margin: 2px;
+  }
 }
