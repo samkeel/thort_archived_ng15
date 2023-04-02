@@ -25,6 +25,10 @@ import { TopOfPageComponent } from './shared/components/top-of-page/top-of-page.
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './shared/components/login/login.component';
 import { AngularFireModule } from '@angular/fire/compat';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -41,10 +45,9 @@ import { AngularFireModule } from '@angular/fire/compat';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
+    FormsModule,
+    ReactiveFormsModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -53,6 +56,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     MatListModule,
     MatCardModule,
     MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [BpObserverService],
   bootstrap: [AppComponent],

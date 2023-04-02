@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { BpObserverService } from '../../services/bp-observer.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -8,6 +10,8 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent {
+  isHandsetPortrait$: Observable<boolean> = this.bpoService.HandsetPortrait$;
+
   signUpForm = this.fb.group({
     email: [
       '',
@@ -17,7 +21,8 @@ export class SignUpComponent {
   });
 
   constructor(private fb: FormBuilder,
-     private _userService: UserService
+     private _userService: UserService,
+     private bpoService: BpObserverService,
      ) {}
 
   get email() {
@@ -39,10 +44,10 @@ export class SignUpComponent {
     const email: string = this.email.value as string;
     const password: string = this.password.value as string;
 
-    // this._userService.signUpNewUserEmail({
-    //   email: email,
-    //   password: password,
-    // });
+    this._userService.signUpNewUserEmail({
+      email: email,
+      password: password,
+    });
   }
 
 }

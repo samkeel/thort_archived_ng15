@@ -1,13 +1,42 @@
-<section>
-  <mat-card>
+<section [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }">
+  <mat-card [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }">
     <mat-card-header>
       <mat-card-title>Sign up</mat-card-title>
       <mat-card-subtitle>Join the dark side</mat-card-subtitle>
     </mat-card-header>
+    <mat-card-content>
+      <form
+        [formGroup]="signUpForm"
+        class="signupform"
+        [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
+      >
+        <mat-form-field color="accent">
+          <input
+            matInput
+            type="email"
+            name="email"
+            placeholder="Email"
+            formControlName="email"
+          />
+          <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+          <input
+            matInput
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
     <mat-card-actions align="end">
       <button
         mat-raised-button
         color="primary"
+        [disabled]="signUpForm.invalid"
+        (click)="onSubmit()"
       >
         Create account
       </button>

@@ -18,3 +18,20 @@ mat-card {
     grid-column-end: span 1;
   }
 }
+
+.signupform {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  mat-form-field {
+    grid-column: 2/9;
+  }
+
+  &.handset-portait {
+    grid-template-columns: 1fr;
+    mat-form-field {
+      grid-column: 1/1;
+    }
+  }
+}
