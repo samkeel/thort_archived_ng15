@@ -6,10 +6,16 @@
     <mat-card-content>
       <p>Login or sign up</p>
       <p>{{currentScreenSize}}</p>
+      <p>user logged in: {{user.isLoggedIn$ | async}}</p>
     </mat-card-content>
-    <mat-card-actions class="card-actions" [ngClass]="{'handset-grid' : handset}">
-      <button mat-raised-button color="primary" class="login-btn" routerLink="login">Login</button>
-      <button mat-raised-button color="accent" class="signup-btn" routerLink="signup">Sign up</button>
+    <mat-card-actions class="card-actions" [ngClass]="{'handset-grid' : handset}">      
+      <ng-container *ngIf="!(user.isLoggedIn$ | async); else signOut">
+        <button mat-raised-button color="primary" class="login-btn" routerLink="login">Login</button>
+        <button mat-raised-button color="accent" class="signup-btn" routerLink="signup">Sign up</button>
+      </ng-container>
+      <ng-template #signOut>
+        <button mat-raised-button color="warn" (click)="onLogout()">Logout</button>
+      </ng-template>
     </mat-card-actions>
   </mat-card>  
 </section>

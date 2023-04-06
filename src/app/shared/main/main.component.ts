@@ -4,6 +4,7 @@ import {
   BreakpointState,
 } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +12,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  constructor(private responsive: BreakpointObserver) {}
+  constructor(
+    private responsive: BreakpointObserver,
+    public user: UserService
+  ) {}
 
   handset = true;
   currentScreenSize: string = '';
@@ -35,5 +39,9 @@ export class MainComponent {
           this.currentScreenSize = 'Handset Portrait';
         }
       });
+  }
+
+  onLogout() {
+    this.user.logout();
   }
 }
