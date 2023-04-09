@@ -15,23 +15,54 @@
             matInput
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="email@domain.com"
             formControlName="email"
           />
-          <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+          <mat-error *ngIf="email.invalid">{{
+            getEmailErrorMessage()
+          }}</mat-error>
         </mat-form-field>
 
         <mat-form-field color="accent">
           <input
             matInput
+            #pw
             type="password"
             placeholder="Password"
             formControlName="password"
           />
+          <mat-error *ngIf="password.invalid">{{
+            getPasswordErrorMessage()
+          }}</mat-error>
         </mat-form-field>
       </form>
+
+      <div
+        *ngIf="pw.value.length < 8; else overEight"
+        class="passwordLength"
+        [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
+      >
+        <mat-checkbox
+          class="example-margin"
+          [indeterminate]="true"
+          [disabled]="true"
+          >Password minimum of 8 characters</mat-checkbox
+        >
+      </div>
+      <ng-template #overEight>
+        <div
+          class="passwordLength"
+          [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
+        >
+          <mat-checkbox
+            class="example-margin"
+            [checked]="true"
+            [disabled]="true"
+            >Minimum of 8 characters</mat-checkbox
+          >
+        </div>
+      </ng-template>
     </mat-card-content>
-    <mat-divider inset></mat-divider>
     <mat-card-actions align="end">
       <button
         mat-raised-button

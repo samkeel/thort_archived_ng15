@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { BpObserverService } from '../../services/bp-observer.service';
@@ -11,6 +11,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,24 +26,31 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
-    MatButtonModule
-  ]
+    MatButtonModule,
+    MatCheckboxModule,
+  ],
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
   isHandsetPortrait$: Observable<boolean> = this.bpoService.HandsetPortrait$;
 
-  signUpForm = this.fb.group({
-    email: [
-      '',
-      { validators: [Validators.required, Validators.email], updateOn: 'blur' },
-    ],
-    password: ['', { validators: [Validators.required] }],
-  });
+  signUpForm = this.fb.group(
+    {
+      email: ['', { validators: [Validators.required, Validators.email] }],
+      password: [
+        '',
+        { validators: [Validators.minLength(8), Validators.required] },
+      ],
+    },
+    { updateOn: 'blur' }
+  );
 
-  constructor(private fb: FormBuilder,
-     private _userService: UserService,
-     private bpoService: BpObserverService,
-     ) {}
+  constructor(
+    private fb: FormBuilder,
+    private _userService: UserService,
+    private bpoService: BpObserverService
+  ) {}
+
+  ngOnInit(): void {}
 
   get email() {
     return this.signUpForm.controls['email'];
@@ -52,11 +60,20 @@ export class SignUpComponent {
     return this.signUpForm.controls['password'];
   }
 
-  getErrorMessage() {
+  getEmailErrorMessage() {
     if (this.email.hasError('required')) {
       return 'Email must be filled out';
     }
     return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  getPasswordErrorMessage() {
+    if (this.password.getError('required')) {
+      return 'Password required';
+    } else if (this.password.getError('minlength')) {
+      return 'Password minimum length 8 chars';
+    }
+    return this.password.hasError('password') ? 'password error' : '';
   }
 
   onSubmit() {
@@ -68,5 +85,4 @@ export class SignUpComponent {
       password: password,
     });
   }
-
 }

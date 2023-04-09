@@ -21,7 +21,6 @@ mat-card {
 
 .signupform {
   display: grid;
-
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
   mat-form-field {
@@ -31,6 +30,22 @@ mat-card {
   &.handset-portait {
     grid-template-columns: 1fr;
     mat-form-field {
+      grid-column: 1/1;
+    }
+  }
+}
+
+.passwordLength {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  mat-checkbox {
+    grid-column: 2/9;
+  }
+
+  &.handset-portait {
+    grid-template-columns: 1fr;
+    mat-checkbox {
       grid-column: 1/1;
     }
   }
