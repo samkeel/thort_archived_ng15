@@ -3,19 +3,26 @@ import {
   Breakpoints,
   BreakpointState,
 } from '@angular/cdk/layout';
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { UserService } from '../services/user.service';
+import {
+  routeFadeStateTrigger,
+} from '../components/animations/route-animations';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
+  animations: [
+    routeFadeStateTrigger,
+  ],
 })
 export class MainComponent {
   constructor(
     private responsive: BreakpointObserver,
     public user: UserService
   ) {}
+  @HostBinding('@routeFadeState') routeAnimation = true;
 
   handset = true;
   currentScreenSize: string = '';

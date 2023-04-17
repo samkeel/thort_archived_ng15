@@ -26,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SideNavServiceService } from './shared/services/side-nav-service.service';
 import { SnackbarService } from './shared/services/snackbar.service';
 import { UserService } from './shared/services/user.service';
+import { UserNavListComponent } from './shared/components/user-nav-list/user-nav-list.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { UserService } from './shared/services/user.service';
     MainComponent,
     HeaderComponent,
     TopOfPageComponent,
+    UserNavListComponent,
   ],
   imports: [
     BrowserModule,

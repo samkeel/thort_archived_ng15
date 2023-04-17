@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { BpObserverService } from '../../services/bp-observer.service';
@@ -11,11 +11,17 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import {
+  routeFadeStateTrigger,
+} from '../animations/route-animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  animations: [
+    routeFadeStateTrigger,
+  ],
   standalone: true,
   imports: [
     CommonModule,
@@ -25,10 +31,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
   ],
 })
 export class LoginComponent {
+  @HostBinding('@routeFadeState') routeAnimation = true;
+
+
   isHandsetPortrait$: Observable<boolean> = this.bpoService.HandsetPortrait$;
 
   signInForm = this.fb.group({

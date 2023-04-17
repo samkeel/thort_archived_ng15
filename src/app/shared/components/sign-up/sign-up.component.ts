@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { BpObserverService } from '../../services/bp-observer.service';
@@ -12,11 +12,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {
+  routeFadeStateTrigger,
+} from '../animations/route-animations';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
+  animations: [
+    routeFadeStateTrigger,
+  ],
   standalone: true,
   imports: [
     CommonModule,
@@ -31,6 +37,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   ],
 })
 export class SignUpComponent implements OnInit {
+  @HostBinding('@routeFadeState') routeAnimation = true;
+
   isHandsetPortrait$: Observable<boolean> = this.bpoService.HandsetPortrait$;
 
   signUpForm = this.fb.group(
