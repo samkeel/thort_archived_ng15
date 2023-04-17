@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { AuthData } from '../Models/auth-data.model';
 import { SnackbarService } from './snackbar.service';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,17 +15,21 @@ export class UserService {
   constructor(
     public afAuth: AngularFireAuth,
     private router: Router,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private loaderService: LoaderService
   ) {
     this.isLoggedIn$ = afAuth.authState.pipe(map((user) => !!user));
   }
 
   signUpNewUserEmail(authData: AuthData) {
+    this.loaderService.loadingStateChanged.next(true);
     this.afAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
+      .then(() => this.loaderService.loadingStateChanged.next(false))
       .then(() => this.router.navigate(['/']))
       .then(() => this.snackbarService.openSnackBar('Welcome to the dark side', ''))
       .catch((error) => {
+        this.loaderService.loadingStateChanged.next(false);
         this.snackbarService.openSnackBar(error.message, '');
       });
   }

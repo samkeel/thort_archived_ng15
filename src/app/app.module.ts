@@ -27,6 +27,11 @@ import { SideNavServiceService } from './shared/services/side-nav-service.servic
 import { SnackbarService } from './shared/services/snackbar.service';
 import { UserService } from './shared/services/user.service';
 import { UserNavListComponent } from './shared/components/user-nav-list/user-nav-list.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoaderService } from './shared/services/loader.service';
+
 
 @NgModule({
   declarations: [
@@ -36,12 +41,14 @@ import { UserNavListComponent } from './shared/components/user-nav-list/user-nav
     HeaderComponent,
     TopOfPageComponent,
     UserNavListComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     LayoutModule,
@@ -54,12 +61,14 @@ import { UserNavListComponent } from './shared/components/user-nav-list/user-nav
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     BpObserverService,
     SideNavServiceService,
     SnackbarService,
     UserService,
+    LoaderService
   ],
   bootstrap: [AppComponent],
 })

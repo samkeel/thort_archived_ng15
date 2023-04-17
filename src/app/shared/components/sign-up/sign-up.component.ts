@@ -1,6 +1,6 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { BpObserverService } from '../../services/bp-observer.service';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -12,17 +12,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {
-  routeFadeStateTrigger,
-} from '../animations/route-animations';
+import { routeFadeStateTrigger } from '../animations/route-animations';
+import { LoaderService } from '../../services/loader.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
-  animations: [
-    routeFadeStateTrigger,
-  ],
+  animations: [routeFadeStateTrigger],
   standalone: true,
   imports: [
     CommonModule,
@@ -34,10 +32,13 @@ import {
     MatDividerModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule
   ],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy  {
   @HostBinding('@routeFadeState') routeAnimation = true;
+  isLoading = false;
+  loadingSubs!: Subscription;
 
   isHandsetPortrait$: Observable<boolean> = this.bpoService.HandsetPortrait$;
 
@@ -55,10 +56,21 @@ export class SignUpComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _userService: UserService,
-    private bpoService: BpObserverService
+    private bpoService: BpObserverService,
+    private loaderService: LoaderService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadingSubs = this.loaderService.loadingStateChanged.subscribe(
+      (isLoading) => {
+        this.isLoading = isLoading;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.loadingSubs.unsubscribe();
+  }
 
   get email() {
     return this.signUpForm.controls['email'];
