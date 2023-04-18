@@ -3,40 +3,64 @@
 }
 
 section {
-    padding: 1em;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  
-    &.handset-portait {
-      grid-template-columns: 1fr;
-    }
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  &.handset-portait {
+    grid-template-columns: 1fr;
   }
-  
-  mat-card {
-    grid-column-start: 2;
-    grid-column-end: span 5;
-  
-    &.handset-portait {
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-column-start: 1;
-      grid-column-end: span 1;
-    }
+}
+
+mat-card {
+  grid-column-start: 2;
+  grid-column-end: span 5;
+
+  &.handset-portait {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-start: 1;
+    grid-column-end: span 1;
   }
-  
-  .signupform {
-    display: grid;
-  
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  
+}
+
+.signupform {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  mat-form-field {
+    grid-column: 2/9;
+  }
+
+  &.handset-portait {
+    grid-template-columns: 1fr;
     mat-form-field {
-      grid-column: 2/9;
-    }
-  
-    &.handset-portait {
-      grid-template-columns: 1fr;
-      mat-form-field {
-        grid-column: 1/1;
-      }
+      grid-column: 1/1;
     }
   }
-  
+}
+
+.signupRoute {
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  &.handset-portait {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  }
+}
+
+.signupText {
+  color: rgba(255, 255, 255, 0.7);
+  grid-column-start: 4;
+  grid-column-end: span 2;
+
+  &.handset-portait {
+    grid-column-start: 2;
+    grid-column-end: span 3;
+  }
+
+  a {
+    text-decoration: underline;
+    text-decoration-color: #df5689;
+    cursor: pointer;
+  }
+}

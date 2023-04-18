@@ -54,3 +54,29 @@ mat-card {
     }
   }
 }
+
+.loginRoute {
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  &.handset-portait {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  }
+}
+
+.loginText {
+  color: rgba(255, 255, 255, 0.7);
+  grid-column-start: 4;
+  grid-column-end: span 2;
+
+  &.handset-portait {
+    grid-column-start: 2;
+    grid-column-end: span 3;
+  }
+
+  a {
+    text-decoration: underline;
+    text-decoration-color: #df5689;
+    cursor: pointer;
+  }
+}

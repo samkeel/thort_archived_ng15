@@ -15,6 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { routeFadeStateTrigger } from '../animations/route-animations';
 import { LoaderService } from '../../services/loader.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -55,6 +56,7 @@ export class SignUpComponent implements OnInit, OnDestroy  {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private _userService: UserService,
     private bpoService: BpObserverService,
     private loaderService: LoaderService
@@ -94,6 +96,10 @@ export class SignUpComponent implements OnInit, OnDestroy  {
       return 'Password minimum length 8 chars';
     }
     return this.password.hasError('password') ? 'password error' : '';
+  }
+
+  loginLink() {
+    this.router.navigate(['login'])
   }
 
   onSubmit() {

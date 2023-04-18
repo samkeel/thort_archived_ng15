@@ -1,47 +1,57 @@
 <section [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }">
-    <mat-card [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }">
-      <mat-card-header>
-        <mat-card-title>Login</mat-card-title>
-        <mat-card-subtitle>Welcome back</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <form
-          [formGroup]="signInForm"
-          class="signupform"
-          [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
-        >
-          <mat-form-field color="accent">
-            <input
-              matInput
-              type="email"
-              name="email"
-              placeholder="Email"
-              formControlName="email"
-            />
-            <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
-          </mat-form-field>
-  
-          <mat-form-field color="accent">
-            <input
-              matInput
-              type="password"
-              placeholder="Password"
-              formControlName="password"
-            />
-          </mat-form-field>
-        </form>
-      </mat-card-content>
-      <mat-divider inset></mat-divider>
-      <mat-card-actions align="end">
-        <button
-          mat-raised-button
-          color="primary"
-          [disabled]="signInForm.invalid"
-          (click)="onSubmit()"
-        >
-          Login
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </section>
-  
+  <mat-card [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle>Welcome back</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form
+        [formGroup]="signInForm"
+        class="signupform"
+        [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
+      >
+        <mat-form-field color="accent">
+          <input
+            matInput
+            type="email"
+            name="email"
+            placeholder="Email"
+            formControlName="email"
+          />
+          <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+          <input
+            matInput
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions align="end">
+      <button
+        *ngIf="!isLoading"
+        mat-raised-button
+        color="primary"
+        [disabled]="signInForm.invalid"
+        (click)="onSubmit()"
+      >
+        Login
+      </button>
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+    </mat-card-actions>
+  </mat-card>
+</section>
+
+<div
+  class="signupRoute"
+  [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
+>
+  <p class="signupText" [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }">
+    Don’t have an account? <a (click)="signUpLink()">Sign up</a>
+  </p>
+</div>

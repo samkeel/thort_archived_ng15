@@ -77,3 +77,12 @@
   </mat-card>
   
 </section>
+
+<div
+  class="loginRoute"
+  [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
+>
+  <p class="loginText" [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }">
+    Already have an account? <a (click)="loginLink()">Login</a>
+  </p>
+</div>

@@ -30,17 +30,20 @@ export class UserService {
       .then(() => this.snackbarService.openSnackBar('Welcome to the dark side', ''))
       .catch((error) => {
         this.loaderService.loadingStateChanged.next(false);
-        this.snackbarService.openSnackBar(error.message, '');
+        this.snackbarService.openSnackBar(this.convertErrorMessage(error['code']), '');
       });
   }
 
   login(authData: AuthData) {
+    this.loaderService.loadingStateChanged.next(true);
     this.afAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
+      .then(() => this.loaderService.loadingStateChanged.next(false))
       .then(() => this.router.navigate(['/']))
       .then(() => this.snackbarService.openSnackBar('Welcome back', ''))
       .catch((error) => {
-        this.snackbarService.openSnackBar(error.message, '');
+        this.loaderService.loadingStateChanged.next(false);
+        this.snackbarService.openSnackBar(this.convertErrorMessage(error['code']), '');
       });
   }
 
@@ -50,11 +53,28 @@ export class UserService {
       .then(() => this.router.navigate(['']))
       .then(() => this.snackbarService.openSnackBar('Logged out', ''))
       .catch((error) => {
-        this.snackbarService.openSnackBar(error.message, '');
+        this.snackbarService.openSnackBar(error.message, '');        
       });
   }
 
   getCurrentUser(): Observable<any> {
     return this.afAuth.authState;
+  }
+
+  convertErrorMessage(code: string): string {
+    switch (code) {
+      case 'auth/user-disabled': {
+        return 'Sorry your user is disabled'
+      }
+      case 'auth/user-not-found': {
+        return 'User name not found'
+      }
+      case 'auth/email-already-in-use': {
+        return 'Email already exists'
+      }
+      default: {
+        return 'Login error try again later'
+      }
+    }
   }
 }
