@@ -39,8 +39,8 @@ export class UserService {
     this.afAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then(() => this.loaderService.loadingStateChanged.next(false))
-      .then(() => this.router.navigate(['/']))
-      .then(() => this.snackbarService.openSnackBar('Welcome back', ''))
+      .then(() => this.router.navigate(['notes']))
+      .then(() => this.snackbarService.openSnackBar('Welcome back \(^-^)/', ''))
       .catch((error) => {
         this.loaderService.loadingStateChanged.next(false);
         this.snackbarService.openSnackBar(this.convertErrorMessage(error['code']), '');
@@ -51,7 +51,7 @@ export class UserService {
     this.afAuth
       .signOut()
       .then(() => this.router.navigate(['']))
-      .then(() => this.snackbarService.openSnackBar('Logged out', ''))
+      .then(() => this.snackbarService.openSnackBar('Logged out ( ･_･)/', ''))
       .catch((error) => {
         this.snackbarService.openSnackBar(error.message, '');        
       });
@@ -64,16 +64,16 @@ export class UserService {
   convertErrorMessage(code: string): string {
     switch (code) {
       case 'auth/user-disabled': {
-        return 'Sorry your user is disabled'
+        return 'Sorry your user is disabled (°o•)'
       }
       case 'auth/user-not-found': {
-        return 'User name not found'
+        return 'Email address not found ¯\\_(ツ)_/¯'
       }
       case 'auth/email-already-in-use': {
-        return 'Email already exists'
+        return 'Email already exists (ಥ﹏ಥ)'
       }
       default: {
-        return 'Login error try again later'
+        return "Login error try again later (⊙＿⊙')"
       }
     }
   }

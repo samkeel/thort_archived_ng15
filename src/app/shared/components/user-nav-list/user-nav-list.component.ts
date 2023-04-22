@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-nav-list',
@@ -7,5 +8,13 @@ import { Component } from '@angular/core';
 
 })
 export class UserNavListComponent {
+
+  constructor(
+    public user: UserService
+  ){}
+
+  onLogout() {
+    this.user.logout();
+  }
 
 }

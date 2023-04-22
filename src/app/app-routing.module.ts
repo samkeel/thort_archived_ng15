@@ -19,6 +19,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'notes',
+    loadChildren: () =>
+      import('./notes/notes.module').then((m) => m.NotesModule),
+  },
+  {
     path: '**',
     loadComponent: () =>
       import(
