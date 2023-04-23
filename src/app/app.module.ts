@@ -31,6 +31,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderService } from './shared/services/loader.service';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 
 
 @NgModule({
@@ -48,6 +51,9 @@ import { LoaderService } from './shared/services/loader.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

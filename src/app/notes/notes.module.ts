@@ -4,16 +4,38 @@ import { CommonModule } from '@angular/common';
 import { NotesRoutingModule } from './notes-routing.module';
 import { NotesComponent } from './components/notes/notes.component';
 import { MatCardModule } from '@angular/material/card';
+import { NewNoteDialogComponent } from './dialogs/new-note-dialog/new-note-dialog.component';
+import { EditNoteDialogComponent } from './dialogs/edit-note-dialog/edit-note-dialog.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
   declarations: [
-    NotesComponent
+    NotesComponent,
+    NewNoteDialogComponent,
+    EditNoteDialogComponent
   ],
   imports: [
     CommonModule,
     NotesRoutingModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDividerModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class NotesModule { }

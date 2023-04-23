@@ -16,6 +16,7 @@ export class SnackbarService {
     } else {
       this.durationInSeconds = this.defaultDuration;
     }
+
     this._snackbar.open(message, action, {
       duration: this.durationInSeconds * 1000,
     });

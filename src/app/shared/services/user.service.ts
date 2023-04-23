@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subscription } from 'rxjs';
 import { AuthData } from '../Models/auth-data.model';
 import { SnackbarService } from './snackbar.service';
 import { LoaderService } from './loader.service';
@@ -19,6 +19,7 @@ export class UserService {
     private loaderService: LoaderService
   ) {
     this.isLoggedIn$ = afAuth.authState.pipe(map((user) => !!user));
+    
   }
 
   signUpNewUserEmail(authData: AuthData) {

@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>New Note</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="newNoteForm" class="newNoteForm">
+    <mat-form-field color="accent">
+      <input
+        matInput
+        type="text"
+        name="title"
+        placeholder="Title"
+        formControlName="title"
+      />
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Content"
+        formControlName="content"
+      />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="" (click)="save()" cdkFocusInitial>Submit</button>
+</mat-dialog-actions>
