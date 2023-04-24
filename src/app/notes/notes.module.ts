@@ -14,13 +14,17 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NotesListComponent } from './components/notes-list/notes-list.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 
 @NgModule({
   declarations: [
     NotesComponent,
     NewNoteDialogComponent,
-    EditNoteDialogComponent
+    EditNoteDialogComponent,
+    NotesListComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,

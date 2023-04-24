@@ -8,4 +8,12 @@
         <button mat-raised-button color="accent" (click)="newNote()">New Note</button>
       </mat-card-content>
   </mat-card>
+  <br>
+  <div *ngFor="let note of notes$ | async">
+    <p>{{note.id}}</p>
+    <p>{{note.title}}</p>
+    <p>{{note.content}}</p>
+    <p>{{note.date}}</p>
+    <br>
+  </div>
 </section>
