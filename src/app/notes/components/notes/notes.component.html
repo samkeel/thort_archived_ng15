@@ -1,19 +1,33 @@
-<section [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }">
-  <mat-card [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }">
+<section
+  class="main-card-section"
+  [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
+>
+  <mat-card
+    class="main-card"
+    [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
+  >
     <mat-card-header>
-        <mat-card-title>Notes works</mat-card-title>
-        <mat-card-subtitle>Notes</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <button mat-raised-button color="accent" (click)="newNote()">New Note</button>
-      </mat-card-content>
+      <mat-card-title>Notes works</mat-card-title>
+      <mat-card-subtitle>Notes</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <button mat-raised-button color="accent" (click)="newNote()">
+        New Note
+      </button>
+    </mat-card-content>
   </mat-card>
-  <br>
+</section>
+
+<section
+  class="notes-cards-list"
+  [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
+>
   <div *ngFor="let note of notes$ | async">
-    <p>{{note.id}}</p>
-    <p>{{note.title}}</p>
-    <p>{{note.content}}</p>
-    <p>{{note.date}}</p>
-    <br>
+    <app-notes-list class="notes-list-card"
+      title="{{ note.title }}"
+      date="{{ note.date }}"
+      content="{{ note.content }}"
+      id="{{ note.id }}"
+    ></app-notes-list>
   </div>
 </section>

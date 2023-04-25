@@ -2,7 +2,7 @@
   display: block;
 }
 
-section {
+.main-card-section {
   padding: 1em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -11,7 +11,7 @@ section {
   }
 }
 
-mat-card {
+.main-card {
   grid-column-start: 2;
   grid-column-end: span 5;
 
@@ -19,5 +19,14 @@ mat-card {
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-start: 1;
     grid-column-end: span 1;
+  }
+}
+
+.notes-cards-list {
+  padding: 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 1fr);
+  &.handset-portait {
+    grid-template-columns: 1fr;
   }
 }

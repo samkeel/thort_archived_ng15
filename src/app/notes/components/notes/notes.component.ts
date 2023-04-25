@@ -20,7 +20,6 @@ export class NotesComponent implements OnInit {
   @HostBinding('@routeFadeState') routeAnimation = true;
 
   isHandsetPortrait$: Observable<boolean> = this.bpoService.HandsetPortrait$;
-  // note!: Note
   notes$!: Observable<Note[]>;
 
   constructor(
@@ -37,7 +36,6 @@ export class NotesComponent implements OnInit {
   newNote() {
     openNewNoteDialog(this.dialog)
       .pipe(filter((val) => !!val))
-      // .subscribe((val) => console.log('new value:', val));
       .subscribe((val) => this.noteService.createNote(val));
   }
 }
