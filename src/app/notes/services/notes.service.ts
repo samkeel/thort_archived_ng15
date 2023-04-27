@@ -47,7 +47,8 @@ export class NotesService {
         if (user) {
           const allUserNotes = query(
             collection(this.firestore, `Notes/`),
-            where('uid', '==', user?.uid), orderBy('title')
+            where('uid', '==', user?.uid),
+            orderBy('title')
           );
           return collectionData(allUserNotes, { idField: 'id' }) as Observable<
             Note[]
@@ -73,6 +74,7 @@ export class NotesService {
   // delete single note
   deleteNoteById(id: string) {
     const noteDocumentReference = doc(this.firestore, `Notes/${id}`);
+    this.snackbarService.openSnackBar('Note deleted', '');
     return deleteDoc(noteDocumentReference);
   }
 

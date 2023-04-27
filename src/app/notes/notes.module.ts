@@ -16,6 +16,10 @@ import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+
+
 
 
 @NgModule({
@@ -40,6 +44,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatDividerModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatIconModule,
+    MatMenuModule
   ]
 })
 export class NotesModule { }

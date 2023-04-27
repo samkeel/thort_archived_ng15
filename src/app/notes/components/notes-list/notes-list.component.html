@@ -1,9 +1,36 @@
 <mat-card>
   <mat-card-header>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Example icon-button with a menu"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
     <mat-card-title>{{ title }}</mat-card-title>
     <mat-card-subtitle>{{ date }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    {{content}}
+    {{ content }}
   </mat-card-content>
+  <mat-card-actions align="end">
+    <button
+      mat-icon-button
+      disabled
+      aria-label="Example icon button with a open in new tab icon"
+    >
+      <mat-icon>open_in_new</mat-icon>
+    </button>
+  </mat-card-actions>
 </mat-card>
+
+<mat-menu #menu="matMenu" xPosition="before">
+  <button mat-menu-item disabled>
+    <mat-icon>edit</mat-icon>
+    <span>Edit</span>
+  </button>
+  <button mat-menu-item (click)="handleDelete()">
+    <mat-icon>delete</mat-icon>
+    <span>Delete</span>
+  </button>
+</mat-menu>

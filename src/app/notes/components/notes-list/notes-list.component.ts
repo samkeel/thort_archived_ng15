@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { NotesService } from '../../services/notes.service';
 
 @Component({
   selector: 'app-notes-list',
   templateUrl: './notes-list.component.html',
-  styleUrls: ['./notes-list.component.scss']
+  styleUrls: ['./notes-list.component.scss'],
 })
 export class NotesListComponent {
   @Input() public title = '';
@@ -11,4 +12,9 @@ export class NotesListComponent {
   @Input() public content = '';
   @Input() public id = '';
 
+  constructor(public noteService: NotesService) {}
+
+  handleDelete() {
+    this.noteService.deleteNoteById(this.id);
+  }
 }
