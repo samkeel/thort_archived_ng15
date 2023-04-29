@@ -22,12 +22,17 @@
   class="notes-cards-list"
   [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
 >
-  <div *ngFor="let note of notes$ | async">
-    <app-notes-list class="notes-list-card"
+  <div
+    *ngFor="let note of notes$ | async"
+    class="list-card"
+    [ngClass]="{ 'handset-portait': isHandsetPortrait$ | async }"
+  >
+    <app-notes-list
       title="{{ note.title }}"
       date="{{ note.date }}"
       content="{{ note.content }}"
       id="{{ note.id }}"
+      summary="{{ note.summary }}"
     ></app-notes-list>
   </div>
 </section>

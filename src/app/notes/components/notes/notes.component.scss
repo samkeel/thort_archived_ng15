@@ -25,8 +25,20 @@
 .notes-cards-list {
   padding: 1em;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 1fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   &.handset-portait {
     grid-template-columns: 1fr;
+  }
+  row-gap: 1em;
+}
+
+.list-card {
+  grid-column-start: 2;
+  grid-column-end: span 5;
+
+  &.handset-portait {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-start: 1;
+    grid-column-end: span 1;
   }
 }

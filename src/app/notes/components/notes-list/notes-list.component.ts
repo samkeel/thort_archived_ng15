@@ -11,6 +11,7 @@ export class NotesListComponent {
   @Input() public date = '';
   @Input() public content = '';
   @Input() public id = '';
+  @Input() public summary = '';
 
   constructor(public noteService: NotesService) {}
 

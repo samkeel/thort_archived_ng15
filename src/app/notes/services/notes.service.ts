@@ -38,7 +38,7 @@ export class NotesService {
     return addDoc(this.noteCollection, { ...note, uid: user?.uid });
   }
 
-  // Read a list of titles of notes owned by current user
+  // Read a list of titles and summaraies of notes owned by current user
 
   // Read all notes owned by current user
   getAllNotes() {
