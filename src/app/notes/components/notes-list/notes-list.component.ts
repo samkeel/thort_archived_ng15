@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NotesService } from '../../services/notes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notes-list',
@@ -13,9 +14,15 @@ export class NotesListComponent {
   @Input() public id = '';
   @Input() public summary = '';
 
-  constructor(public noteService: NotesService) {}
+  constructor(public noteService: NotesService, private router: Router) {}
 
-  handleDelete() {
+  deleteNote() {
     this.noteService.deleteNoteById(this.id);
+  }
+
+  openNote() {
+    this.noteService.noteID.next(this.id);
+    // this.noteService.noteIdValue.next(this.id);
+    this.router.navigate(['notes/note']);
   }
 }

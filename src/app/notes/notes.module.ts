@@ -18,6 +18,7 @@ import { NotesListComponent } from './components/notes-list/notes-list.component
 import { TruncatePipe } from './pipes/truncate.pipe';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import { NoteComponent } from './components/note/note.component';
 
 
 
@@ -28,7 +29,8 @@ import {MatMenuModule} from '@angular/material/menu';
     NewNoteDialogComponent,
     EditNoteDialogComponent,
     NotesListComponent,
-    TruncatePipe
+    TruncatePipe,
+    NoteComponent
   ],
   imports: [
     CommonModule,

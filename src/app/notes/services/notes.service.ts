@@ -1,7 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Note } from '../models/note.model';
-import { Firestore, collectionData, orderBy } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collectionData,
+  docData,
+  documentId,
+  orderBy,
+} from '@angular/fire/firestore';
 import {
   CollectionReference,
   DocumentData,
@@ -12,8 +18,9 @@ import {
   updateDoc,
   query,
   where,
+  getDoc,
 } from '@firebase/firestore';
-import { Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, from, switchMap } from 'rxjs';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 
 @Injectable({
@@ -21,6 +28,8 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 })
 export class NotesService {
   private noteCollection!: CollectionReference<DocumentData>;
+  noteID = new BehaviorSubject<string>('');
+  noteIdValue = new Subject<string>();
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -61,8 +70,26 @@ export class NotesService {
   }
 
   // Read by ID
-  getNoteById(note: Note) {
-    return addDoc(this.noteCollection, note);
+  // async getNoteById(noteId: string): Promise<any> {
+  //   const noteDocumentReference = doc(this.firestore, `Notes/${noteId}`);
+  //   const noteDocumentSnapshot = await getDoc(noteDocumentReference);
+  //   return noteDocumentSnapshot.data();
+  // }
+  async getNoteById(noteId: string) {
+    // const docRef = this.firestore.doc
+    // const noteDocumentReference = doc(this.firestore, '/Notes/tpANFOzA3VvM0zH7ojZT');
+    const noteDocumentReference = doc(this.firestore, `Notes/${noteId}`);
+    const docSnap = await getDoc(noteDocumentReference);
+    if (docSnap.exists()) {
+      console.log('Document data:', docSnap.data());
+    } else {
+      console.log('no such document');
+    }
+  }
+
+  get(id: string) {
+    const noteDocumentReference = doc(this.firestore, `Notes/{id}`);
+    return docData(noteDocumentReference, { idField: 'id' });
   }
 
   // update single note

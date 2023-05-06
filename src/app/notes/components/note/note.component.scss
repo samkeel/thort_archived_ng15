@@ -1,0 +1,19 @@
+.main-card-section {
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    &.handset-portait {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .main-card {
+    grid-column-start: 2;
+    grid-column-end: span 5;
+  
+    &.handset-portait {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-start: 1;
+      grid-column-end: span 1;
+    }
+  }

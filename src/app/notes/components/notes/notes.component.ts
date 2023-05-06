@@ -1,4 +1,4 @@
-import { Component, HostBinding, Inject, OnInit } from '@angular/core';
+import { Component, HostBinding, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Observable, filter } from 'rxjs';
 import { routeFadeStateTrigger } from 'src/app/shared/components/animations/route-animations';
 import { BpObserverService } from 'src/app/shared/services/bp-observer.service';
@@ -16,7 +16,7 @@ import { Note } from '../../models/note.model';
   styleUrls: ['./notes.component.scss'],
   animations: [routeFadeStateTrigger],
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent implements OnInit, OnDestroy {
   @HostBinding('@routeFadeState') routeAnimation = true;
 
   isHandsetPortrait$: Observable<boolean> = this.bpoService.HandsetPortrait$;
@@ -30,7 +30,10 @@ export class NotesComponent implements OnInit {
 
   ngOnInit(): void {
     this.notes$ = this.noteService.getAllNotes();
+  }
 
+  ngOnDestroy(): void {
+      
   }
 
   newNote() {
